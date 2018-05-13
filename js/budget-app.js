@@ -3,8 +3,8 @@ var expensesArr = [];
 var type = "inc"; //type can be inc or exp
 var dataIncome, dataExpenses; //data from local storage
 
-var incomeList = document.querySelector('.income-list');
-var expensesList = document.querySelector('.expenses-list');
+//var incomeList = document.querySelector('.income-list');
+//var expensesList = document.querySelector('.expenses-list');
 var displayIncome = document.querySelector('.tot-income');
 var displayExpenses = document.querySelector('.tot-expenses');
 var displayBudget = document.querySelector('.current-budget');
@@ -182,15 +182,39 @@ clearBtn.addEventListener('click', function(){
 tablesSection.addEventListener('click', function(e) {
 	console.log(e);
 	if (e.target.className === "delBtn") {
-		//delete row from the table
-		var td = e.target.parentElement;
+		//delete item from array
+		var btn = e.target;
+		var valToDel = btn.parentElement.previousElementSibling;
+		var descToDel = valToDel.previousElementSibling;
+		var td = btn.parentElement;
 		var tr = td.parentElement;
 		var table = tr.parentElement;
-		table.removeChild(tr); 
 
-		//delete item from local storage
-		
+		//search array for item do delete
+		if (table.className === "income-table") {
+			for (var i = 0; i < incomeArr.length; i++) {
+				if (incomeArr[i].desc === descToDel.textContent && incomeArr[i].val === Number(valToDel.textContent)) {
+					//delete item from array
+					incomeArr.splice(i, 1);
+					break;
+				}
+			}
+			//update local storage based on modified array
+			localStorage.setItem('income', JSON.stringify(incomeArr));
+			
+		} else if (table.className === "expenses-table") {
+			for (var i = 0; i < expensesArr.length; i++) {
+				if (expensesArr[i].desc === descToDel.textContent && expensesArr[i].val === Number(valToDel.textContent)) {
+					//delete item from array
+					expensesArr.splice(i, 1);
+					break;
+				}
+			}
+			//update local storage based on modified array
+			localStorage.setItem('expenses', JSON.stringify(expensesArr));
+		}
 
-		//delete item from array
+		//delete row from the table
+		table.removeChild(tr);		
 	}
 });
