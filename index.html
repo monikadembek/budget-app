@@ -7,18 +7,18 @@
 </head>
 <body>
 	<header>
-		<h1>Available budget in <span class="date">May 2018</span></h1>
-		<h2 class="current-budget">2100</h2>
-		<div>Income: + <span class="tot-income">2500</span></div> 
-		<div>Expenses: - <span class="tot-expenses">800</span></div>	
+		<h1>Available budget in <span class="date">May 2018</span>
+			<span class="current-budget">2100</span></h1>
+		<h2>Income: + <span class="tot-income">2500</span></h2> 
+		<h2>Expenses: - <span class="tot-expenses">800</span></h2>	
 	</header>
 	<main>
 		<section class="form-section">
 			<form action="" name="form" id="form">
-				<label for="income">+</label>
 				<input type="radio" value="inc" name="type" id="income" checked>
-				<label for="expense">-</label>
+				<label for="income"><span></span>+</label>
 				<input type="radio" value="exp" id="expense" name="type">
+				<label for="expense"><span></span>-</label>
 				<input type="text" name="desc" placeholder="description" id="form__desc">
 				<input type="number" placeholder="add value" id="form__val">
 				<input type="submit" value="submit">
@@ -35,8 +35,10 @@
 					<th colspan="3">Expenses:</th>
 				</tr>
 			</table>
-			<button class="clearBtn">Clear all</button>
 		</section>
+		<div class="cta-section">
+			<button class="clearBtn">Clear all</button>
+		</div>
 	</main>
 	<script src="js/budget-app.js"></script>
 </body>
