@@ -3,8 +3,7 @@ var expensesArr = [];
 var type = "inc"; //type can be inc or exp
 var dataIncome, dataExpenses; //data from local storage
 
-//var incomeList = document.querySelector('.income-list');
-//var expensesList = document.querySelector('.expenses-list');
+var date = document.querySelector('.date');
 var displayIncome = document.querySelector('.tot-income');
 var displayExpenses = document.querySelector('.tot-expenses');
 var displayBudget = document.querySelector('.current-budget');
@@ -16,6 +15,13 @@ var incomeTable = document.querySelector('.income-table');
 var expensesTable = document.querySelector('.expenses-table');
 var tablesSection = document.querySelector('.tables-section');
 
+
+function getDate() {
+	var date = new Date();
+	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+	return (months[date.getMonth()] + " " + date.getFullYear());
+
+}
 
 
 function calcBudget() {
@@ -41,7 +47,9 @@ function calcTotalExpenses() {
 
 
 function init() {
-	
+	//display current date
+	date.textContent = getDate();
+
 	//check if there are any incomes in local storage
 	if (localStorage.getItem('income')) {
 		dataIncome = JSON.parse(localStorage.getItem('income'));
